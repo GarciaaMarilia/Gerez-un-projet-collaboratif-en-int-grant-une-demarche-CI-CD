@@ -89,8 +89,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Build Docker images
-        run: docker-compose build
+      - name: Build backend Docker image
+        run: docker build -t bobapp-backend ./back
+        
+      - name: Build frontend Docker image
+        run: docker build -t bobapp-frontend ./front
       
-      - name: Verify Docker build
-        run: docker images | grep bobapp || docker images
+      - name: List Docker images
+        run: docker images | grep bobapp
